@@ -130,7 +130,7 @@ class _HomeTabState extends State<HomeTab> {
               ),
               itemCount: appData.items.length,
               itemBuilder: (_, index) {
-                return const ItemTile();
+                return ItemTile(item: appData.items[index] );
               },
             ),
           ),
