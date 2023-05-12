@@ -85,14 +85,35 @@ List<CartItemModel> cartItems = [
 DateTime now = DateTime.now();
 String formatDate = DateFormat.yMMMEd().format(now);
 
+// pedido 1
 List<OrderModel> orders = [
   OrderModel(
     copyAndPaste: 'uzumymwsss21',
-    createdDateTime: DateTime.parse('2022-05-11 10:01:00.321'),
-    overdueDateTime: DateTime.parse('2022-05-11 10:05:00.321'),
+    createdDateTime: DateTime.parse('2023-05-12 20:01:00.321'),
+    overdueDateTime: DateTime.parse('2023-05-12 20:01:00.321'),
     id: 'asd654da6sgd21',
     status: 'pending_payment',
     total: 11.0,
-    items: [CartItemModel(item: apple, quantity: 2)],
-  )
+    items: [
+      CartItemModel(item: apple, quantity: 2),
+      CartItemModel(item: mango, quantity: 2),
+      
+      ]
+  ),
+
+  // pedido 2
+    OrderModel(
+    copyAndPaste: 'a15032safsrfs',
+    createdDateTime: DateTime.parse('2023-05-12 20:01:00.321'),
+    overdueDateTime: DateTime.parse('2023-05-12 20:01:00.321'),
+    id: 'dewger45ds4add7',
+    status: 'delivered',
+    total: 11.5,
+    items: [
+      CartItemModel(item: guava, quantity: 1),
+      
+      ]
+  ),
+
 ];
+

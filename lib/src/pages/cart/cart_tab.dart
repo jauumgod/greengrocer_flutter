@@ -5,6 +5,8 @@ import 'package:greengrocer/src/pages/cart/components/cart_tile.dart';
 import 'package:greengrocer/src/services/utils_services.dart';
 import 'package:greengrocer/src/config/appdata.dart' as appData;
 
+import '../common_widgets/payment_dialog.dart';
+
 class CartTab extends StatefulWidget {
   const CartTab({Key? key}) : super(key: key);
 
@@ -73,6 +75,7 @@ class _CartTabState extends State<CartTab> {
                 ),
               ),
               //TOTAL GERAL
+
               Text(
                 utilsServices.priceToCurrency(cartTotalPrice()),
                 style: TextStyle(
@@ -93,7 +96,13 @@ class _CartTabState extends State<CartTab> {
                   //botao concluir
                   onPressed: () async {
                     bool? result = await showOrderConfirmation();
-                    print(result);
+                    if (result ?? false) {
+                      showDialog(
+                          context: context,
+                          builder: (_) {
+                            return PaymentDialog(order: appData.orders.first);
+                          });
+                    }
                   },
                   child: const Text(
                     'Concluir Pedido',
