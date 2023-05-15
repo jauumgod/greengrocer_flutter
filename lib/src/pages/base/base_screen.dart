@@ -22,19 +22,17 @@ class _BaseScreenState extends State<BaseScreen> {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
-        children: [
-            const HomeTab(),
-            const CartTab(),
-            const OrdersTab(),
-            const ProfileTab()
-        ],
+        children: const [HomeTab(), CartTab(), OrdersTab(), ProfileTab()],
       ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           onTap: (index) {
             setState(() {
               currentIndex = index;
-              pageController.jumpToPage(index);
+              pageController.animateToPage(index,
+                  duration: const Duration(milliseconds: 710),
+                  curve: Curves.easeInOutSine
+                );
             });
           },
           type: BottomNavigationBarType.fixed,

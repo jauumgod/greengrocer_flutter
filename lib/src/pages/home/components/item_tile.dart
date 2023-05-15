@@ -4,12 +4,31 @@ import 'package:greengrocer/src/pages/product/product_screen.dart';
 import 'package:greengrocer/src/services/utils_services.dart';
 import '../../../models/item_model.dart';
 
-class ItemTile extends StatelessWidget {
+class ItemTile extends StatefulWidget {
   final ItemModel item;
+  final void Function(GlobalKey) cartAnimationMethod;
 
-  ItemTile({Key? key, required this.item}) : super(key: key);
+  ItemTile({Key? key, required this.item, required this.cartAnimationMethod})
+      : super(key: key);
+
+  @override
+  State<ItemTile> createState() => _ItemTileState();
+}
+
+class _ItemTileState extends State<ItemTile> {
+  final GlobalKey imageGk = GlobalKey();
 
   final UtilsServices utilsServices = UtilsServices();
+
+  IconData tileIcon = Icons.add_shopping_cart_outlined;
+
+  Future<void> switchIcon() async {
+    setState(() => tileIcon = Icons.check);
+
+    await Future.delayed(const Duration(milliseconds: 1500));
+
+    setState(() => tileIcon = Icons.add_shopping_cart_outlined);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +38,7 @@ class ItemTile extends StatelessWidget {
         GestureDetector(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (c) {
-              return ProductScreen(item:item);
+              return ProductScreen(item: widget.item);
             }));
           },
           child: Card(
@@ -34,12 +53,16 @@ class ItemTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     //IMAGEM
-                    Expanded(child: Hero(
-                      tag: item.imgURL,
-                      child: Image.asset(item.imgURL))),
+                    Expanded(
+                        child: Hero(
+                            tag: widget.item.imgURL,
+                            child: Image.asset(
+                              widget.item.imgURL,
+                              key: imageGk,
+                            ))),
                     //NOME
                     Text(
-                      item.itemName,
+                      widget.item.itemName,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -49,7 +72,7 @@ class ItemTile extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          utilsServices.priceToCurrency(item.price),
+                          utilsServices.priceToCurrency(widget.item.price),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -57,7 +80,7 @@ class ItemTile extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '/${item.unit}',
+                          '/${widget.item.unit}',
                           style: TextStyle(
                               color: Colors.grey.shade500,
                               fontSize: 12,
@@ -73,20 +96,29 @@ class ItemTile extends StatelessWidget {
         Positioned(
           top: 4,
           right: 4,
-          child: GestureDetector(
-            onTap: () {},
-            child: Container(
-              height: 40,
-              width: 35,
-              decoration: BoxDecoration(
-                  color: CustomColors.customSwatchColor,
-                  borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(15),
-                      topRight: Radius.circular(20))),
-              child: const Icon(
-                Icons.add_shopping_cart_outlined,
-                color: Colors.white,
-                size: 20,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(15),
+              topRight: Radius.circular(20),
+            ),
+            child: Material(
+              child: InkWell(
+                onTap: () {
+                  switchIcon();
+                  widget.cartAnimationMethod(imageGk);
+                },
+                child: Ink(
+                  height: 40,
+                  width: 35,
+                  decoration: BoxDecoration(
+                    color: CustomColors.customSwatchColor,
+                  ),
+                  child: Icon(
+                    tileIcon,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                ),
               ),
             ),
           ),
