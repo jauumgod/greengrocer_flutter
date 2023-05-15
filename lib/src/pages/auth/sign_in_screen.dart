@@ -4,6 +4,7 @@ import 'package:greengrocer/src/pages/auth/components/custom_text_field.dart';
 import 'package:greengrocer/src/pages/auth/sign_up_screen.dart';
 import 'package:greengrocer/src/pages/base/base_screen.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
+import 'package:greengrocer/src/pages/common_widgets/app_name_widget.dart';
 
 class SignScreen extends StatelessWidget {
   const SignScreen({super.key});
@@ -25,22 +26,10 @@ class SignScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //NOME DO APP
-                  Text.rich(TextSpan(
-                    style: const TextStyle(
-                      fontSize: 40,
-                    ),
-                    children: [
-                      const TextSpan(
-                          text: 'Green',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold)),
-                      TextSpan(
-                          text: 'Grocer',
-                          style: TextStyle(
-                              color: CustomColors.customContrastColor))
-                    ],
-                  )),
+                 const AppNameWidget(
+                  greenTitleColor: Colors.white,
+                  textSize: 35,
+                 ),
 
                   //CATEGORIAS
                   SizedBox(
