@@ -34,7 +34,7 @@ class _HomeTabState extends State<HomeTab> {
     super.initState();
 
     Future.delayed(
-      const Duration(seconds: 2),
+      const Duration(seconds: 3),
       () {
         setState(() {
           isLoading = false;

@@ -1,10 +1,10 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greengrocer/src/pages/auth/components/custom_text_field.dart';
-import 'package:greengrocer/src/pages/auth/sign_up_screen.dart';
-import 'package:greengrocer/src/pages/base/base_screen.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
 import 'package:greengrocer/src/pages/common_widgets/app_name_widget.dart';
+import 'package:greengrocer/src/pages_routes/app_pages.dart';
 
 class SignScreen extends StatelessWidget {
   const SignScreen({super.key});
@@ -26,10 +26,10 @@ class SignScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //NOME DO APP
-                 const AppNameWidget(
-                  greenTitleColor: Colors.white,
-                  textSize: 35,
-                 ),
+                  const AppNameWidget(
+                    greenTitleColor: Colors.white,
+                    textSize: 35,
+                  ),
 
                   //CATEGORIAS
                   SizedBox(
@@ -79,10 +79,7 @@ class SignScreen extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18))),
                           onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(builder: (c) {
-                              return BaseScreen();
-                            }));
+                            Get.offNamed(PagesRoutes.baseRoute);
                           },
                           child: const Text(
                             'Entrar',
@@ -135,11 +132,7 @@ class SignScreen extends StatelessWidget {
                                 side:
                                     BorderSide(width: 2, color: Colors.green)),
                             onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(builder: (c) {
-                                  return SignUpScreen();
-                                }),
-                              );
+                              Get.toNamed(PagesRoutes.signUpRoute);
                             },
                             child: const Text(
                               'Criar Conta',
