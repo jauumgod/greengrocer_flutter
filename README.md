@@ -17,6 +17,7 @@ void main() {
   runApp(const MyApp());
 }
 ```
+Para ver mais sobre injeção de dependencias: <a link="https://medium.com/popcodemobile/inje%C3%A7%C3%A3o-de-depend%C3%AAncias-no-flutter-152704d4064d">Clique Aqui!</a>
 <hr>
 
 <h2>Screens Utilizadas</h2>
