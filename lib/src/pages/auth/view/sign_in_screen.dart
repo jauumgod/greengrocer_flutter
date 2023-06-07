@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
 import 'package:greengrocer/src/pages/common_widgets/app_name_widget.dart';
-import '../../pages_routes/app_pages.dart';
-import 'components/custom_text_field.dart';
-import 'controller/auth_controller.dart';
+import '../../../pages_routes/app_pages.dart';
+import '../components/custom_text_field.dart';
+import '../controller/auth_controller.dart';
 
 class SignScreen extends StatelessWidget {
   SignScreen({super.key});
