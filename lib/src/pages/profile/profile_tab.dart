@@ -36,25 +36,25 @@ class _ProfileTabState extends State<ProfileTab> {
           //Email
           CustomTextField(
               readOnly: true,
-              initalValue: userData.user.email,
+              initalValue: "email@email.com",
               icon: Icons.email,
               label: 'Email'),
           //Nome
           CustomTextField(
               readOnly: true,
-              initalValue: userData.user.nome,
+              initalValue: "nomeFic",
               icon: Icons.person_2,
               label: 'Nome'),
           //Celular
           CustomTextField(
               readOnly: true,
-              initalValue: userData.user.celular,
+              initalValue: "62 9962-XXXX",
               icon: Icons.phone,
               label: 'Celular'),
           //CPF
           CustomTextField(
               readOnly: true,
-              initalValue: userData.user.cpf,
+              initalValue: "622.XXX.000-00",
               icon: Icons.add_card_sharp,
               label: 'CPF',
               isSecret: true),

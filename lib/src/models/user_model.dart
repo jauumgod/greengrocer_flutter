@@ -1,16 +1,38 @@
 class UserModel {
-  String nome, email, celular, cpf, senha;
+  String ? name,
+  email,
+  phone,
+  cpf,
+  password,
+  id,
+  token;
 
-  UserModel({required this.nome,
-    required this.email,
-    required this.celular,
-    required this.cpf,
-    required this.senha
+  UserModel({ this.name,
+     this.email,
+     this.phone,
+     this.cpf,
+     this.password,
+     this.id,
+     this.token
   });
+
+
+  factory UserModel.fromMap(Map<String, dynamic>map){
+        return UserModel(
+      cpf: map['cpf'],
+      email: map['email'],
+      id: map['id'],
+      name: map['name'],
+      password: map['password'],
+      phone: map['phone'],
+      token: map['token'],
+    );
+  }
+
+  @override
+  String toString() {
+    return "name: $name | cpf: $cpf";
+  }
+
 }
 
-UserModel user = UserModel(nome: 'Joao Marcos',
-                          email: 'joao@gmail.com',
-                          celular:' 92965-4854',
-                          cpf: '96596421522',
-                          senha: '');
