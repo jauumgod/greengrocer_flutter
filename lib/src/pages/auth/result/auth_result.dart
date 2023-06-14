@@ -10,3 +10,5 @@ class AuthResult with _$AuthResult {
   factory AuthResult.error(String message) = Error;
 
 }
+
+
