@@ -24,25 +24,37 @@ class AuthController extends GetxController {
   Future<void> validateToken() async {
     //recuperar o token salvo localmente
     String? token = await utilServices.getLocalData(key: StorageKeys.token);
+
     if (token == null) {
       Get.offAllNamed(PagesRoutes.signInRoute);
+      print("redirecionando para tela inicial");
       return;
-    } else {
-      AuthResult result = await authRepository.validateToken(token);
-      result.when(success: (user) {
+    }
+
+    AuthResult result = await authRepository.validateToken(token);
+
+    result.when(
+      success: (user) {
+        print("mantendo o login, token ok");
         this.user = user;
         saveTokenAndProceedToBase();
-      }, error: (message) {
+      },
+      error: (message) {
         signOut();
-      });
+      },
+    );
+    if (user.token != null) {
+      print("mantendo o login, token ok");
+      saveTokenAndProceedToBase();
     }
   }
 
   Future<void> signOut() async {
+    print('sign out');
     //zerar user
-    user = UserModel();
+    //user = UserModel();
     //remover token
-    await utilServices.removeLocalData(key: StorageKeys.token);
+    //await utilServices.removeLocalData(key: StorageKeys.token);
     //ir para login
     Get.offAllNamed(PagesRoutes.signInRoute);
   }
@@ -64,12 +76,12 @@ class AuthController extends GetxController {
 
     result.when(success: (user) {
       this.user = user;
+      print(user.token);
+      print("passou aqui no token");
 
       saveTokenAndProceedToBase();
     }, error: (message) {
-      utilServices.showToast(
-        message: message,
-        isError: true);
+      utilServices.showToast(message: message, isError: true);
       print(message);
     });
   }

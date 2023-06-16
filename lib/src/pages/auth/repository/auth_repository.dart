@@ -13,6 +13,7 @@ class AuthRepository {
         url: Endpoints.validateToken,
         method: HttpMethods.post,
         headers: {
+          "Content-type": "application/json",
           "X-Parse-Session-Token": token,
         });
     if (result['result'] != null) {

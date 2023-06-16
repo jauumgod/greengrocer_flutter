@@ -8,17 +8,20 @@ class UtilsServices {
   //salvar dados localmente
   final storage = const FlutterSecureStorage();
   Future<void> saveLocalData({required String key, String? data}) async {
+    print("Salvando o token...");
     await storage.write(key: key, value: data);
   }
 
   //recuperar dados salvos
   Future<String?> getLocalData({required String key}) async {
+    print("token recuperado");
     await storage.read(key: key);
     return key;
   }
 
   //remover dados salvos
   Future<void> removeLocalData({required String key}) async {
+    print("removendo token");
     await storage.delete(key: key);
   }
 
@@ -26,6 +29,7 @@ class UtilsServices {
     NumberFormat numberFormat = NumberFormat.simpleCurrency(locale: 'pt_BR');
     return numberFormat.format(price);
   }
+
   //fomatar a Data
   String formatDateTime(DateTime datetime) {
     initializeDateFormatting();
