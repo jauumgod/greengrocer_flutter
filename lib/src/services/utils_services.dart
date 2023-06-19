@@ -5,16 +5,17 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class UtilsServices {
-  //salvar dados localmente
   final storage = const FlutterSecureStorage();
+  //criar 
+  
+  //salvar dados localmente
+  
   Future<void> saveLocalData({required String key, String? data}) async {
-    print("Salvando o token...");
     await storage.write(key: key, value: data);
   }
 
   //recuperar dados salvos
   Future<String?> getLocalData({required String key}) async {
-    print("token recuperado");
     await storage.read(key: key);
     return key;
   }
