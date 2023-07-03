@@ -4,6 +4,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+AndroidOptions _getAndroidOptions() => const AndroidOptions(
+        encryptedSharedPreferences: true,
+      );
+final storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
+
+
 class UtilsServices {
   final storage = const FlutterSecureStorage();
   //criar 
@@ -16,13 +22,12 @@ class UtilsServices {
 
   //recuperar dados salvos
   Future<String?> getLocalData({required String key}) async {
-    await storage.read(key: key);
-    return key;
+    String? valor = await storage.read(key: key);
+    return valor;
   }
 
   //remover dados salvos
   Future<void> removeLocalData({required String key}) async {
-    print("removendo token");
     await storage.delete(key: key);
   }
 

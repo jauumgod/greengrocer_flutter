@@ -12,8 +12,9 @@ class SignUpScreen extends StatelessWidget {
   );
   final phoneFormatter = MaskTextInputFormatter(
     mask: '(##)#####-####',
-    filter: {'#':RegExp(r'[0-9]')},
+    filter: {'#': RegExp(r'[0-9]')},
   );
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -50,37 +51,54 @@ class SignUpScreen extends StatelessWidget {
                       borderRadius: BorderRadius.vertical(
                         top: Radius.circular(45),
                       )),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const CustomTextField(icon: Icons.email, label: 'Email'),
-                      const CustomTextField(
-                        icon: Icons.lock,
-                        label: 'Senha',
-                        isSecret: true,
-                      ),
-                      const CustomTextField(icon: Icons.person, label: 'Nome'),
-                      CustomTextField(
-                          icon: Icons.phone, label: 'Celular', inputFormatters: [phoneFormatter],),
-                      CustomTextField(
-                          icon: Icons.file_copy, label: 'CPF', inputFormatters: [cpfFormatter],),
-                      SizedBox(
-                        height: 50,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18),
-                          )),
-                          onPressed: () {},
-                          child: const Text(
-                            'Cadastrar Usuario',
-                            style: TextStyle(
-                              fontSize: 18,
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const CustomTextField(
+                            icon: Icons.email,
+                            label: 'Email',
+                            textInputType: TextInputType.emailAddress,
+                            ),
+                        const CustomTextField(
+                          icon: Icons.lock,
+                          label: 'Senha',
+                          isSecret: true,
+                        ),
+                        const CustomTextField(
+                            icon: Icons.person,
+                            label: 'Nome'),
+                        CustomTextField(
+                          icon: Icons.phone,
+                          label: 'Celular',
+                          inputFormatters: [phoneFormatter],
+                          textInputType: TextInputType.phone,
+                        ),
+                        CustomTextField(
+                          icon: Icons.file_copy,
+                          label: 'CPF',
+                          inputFormatters: [cpfFormatter],
+                          textInputType: TextInputType.number,
+                        ),
+                        SizedBox(
+                          height: 50,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18),
+                            )),
+                            onPressed: () {},
+                            child: const Text(
+                              'Cadastrar Usuario',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ]),
