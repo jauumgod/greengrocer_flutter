@@ -5,17 +5,16 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 AndroidOptions _getAndroidOptions() => const AndroidOptions(
-        encryptedSharedPreferences: true,
-      );
+      encryptedSharedPreferences: true,
+    );
 final storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
-
 
 class UtilsServices {
   final storage = const FlutterSecureStorage();
-  //criar 
-  
+  //criar
+
   //salvar dados localmente
-  
+
   Future<void> saveLocalData({required String key, String? data}) async {
     await storage.write(key: key, value: data);
   }

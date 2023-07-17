@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
 import 'package:greengrocer/src/pages/common_widgets/app_name_widget.dart';
 import '../../../pages_routes/app_pages.dart';
+import '../../../services/validators.dart';
 import '../components/custom_text_field.dart';
 import '../controller/auth_controller.dart';
 
@@ -78,15 +79,7 @@ class SignScreen extends StatelessWidget {
                           controller: emailController,
                           icon: Icons.email,
                           label: 'Email',
-                          validator: (email) {
-                            if (email == null || email.isEmpty)
-                              return 'Digite seu email';
-
-                            if (!email.isEmail)
-                              return 'Digite um email válido!';
-
-                            return null;
-                          },
+                          validator: emailValidator,
                         ),
                         //SENHA
                         CustomTextField(
@@ -96,15 +89,15 @@ class SignScreen extends StatelessWidget {
                             isSecret: true,
                             validator: (password) {
                               if (password == null || password.isEmpty) {
-                                return 'Digite sua senha';
+                                return "Digite sua senha";
                               }
-
                               if (password.length < 7) {
-                                return 'Digite uma senha com pelo menos 07 caracteres.';
+                                return 'Digite uma senha com pelo menos 7 caracteres.';
                               }
 
                               return null;
-                            }),
+                            },
+                            ),
 
                         //BOTAO DE ENTRAR
                         SizedBox(

@@ -23,30 +23,26 @@ class AuthController extends GetxController {
 
   Future<void> validateToken() async {
     //recuperar o token salvo localmente
-    String? token = await utilServices.getLocalData(key: StorageKeys.token); 
+    String? token = await utilServices.getLocalData(key: StorageKeys.token);
     if (token == null) {
       Get.offAllNamed(PagesRoutes.signInRoute);
       return;
-    }
-    else{
+    } else {
       AuthResult result = await authRepository.validateToken(token);
 
-    result.when(
-      success: (user) {
-        this.user = user;
-        saveTokenAndProceedToBase();
-      },
-      error: (message) {
-        signOut();
-      },
-    );
+      result.when(
+        success: (user) {
+          this.user = user;
+          saveTokenAndProceedToBase();
+        },
+        error: (message) {
+          signOut();
+        },
+      );
     }
-
-
   }
 
   Future<void> signOut() async {
-
     //zerar user
     user = UserModel();
     //remover token
