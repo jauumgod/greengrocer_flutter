@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
+import 'package:greengrocer/src/pages/auth/view/forgot_password_dialog.dart';
 import 'package:greengrocer/src/pages/common_widgets/app_name_widget.dart';
 import '../../../pages_routes/app_pages.dart';
 import '../../../services/validators.dart';
@@ -84,21 +85,21 @@ class SignScreen extends StatelessWidget {
                         ),
                         //SENHA
                         CustomTextField(
-                            controller: passwordController,
-                            icon: Icons.lock,
-                            label: 'Senha',
-                            isSecret: true,
-                            validator: (password) {
-                              if (password == null || password.isEmpty) {
-                                return "Digite sua senha";
-                              }
-                              if (password.length < 7) {
-                                return 'Digite uma senha com pelo menos 7 caracteres.';
-                              }
+                          controller: passwordController,
+                          icon: Icons.lock,
+                          label: 'Senha',
+                          isSecret: true,
+                          validator: (password) {
+                            if (password == null || password.isEmpty) {
+                              return "Digite sua senha";
+                            }
+                            if (password.length < 7) {
+                              return 'Digite uma senha com pelo menos 7 caracteres.';
+                            }
 
-                              return null;
-                            },
-                            ),
+                            return null;
+                          },
+                        ),
 
                         //BOTAO DE ENTRAR
                         SizedBox(
@@ -113,7 +114,8 @@ class SignScreen extends StatelessWidget {
                                 onPressed: authController.isLoading.value
                                     ? null
                                     : () {
-                                        FocusScope.of(context).unfocus(); //fazer teclado sumir
+                                        FocusScope.of(context)
+                                            .unfocus(); //fazer teclado sumir
 
                                         if (_formKey.currentState!.validate()) {
                                           String email = emailController.text;
@@ -144,7 +146,14 @@ class SignScreen extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (_) {
+                                      return ForgotPasswordDialog(
+                                          email: emailController.text);
+                                    });
+                              },
                               child: Text(
                                 'Esqueceu a senha?',
                                 style: TextStyle(
