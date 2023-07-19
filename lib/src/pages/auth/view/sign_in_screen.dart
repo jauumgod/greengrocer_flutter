@@ -80,6 +80,7 @@ class SignScreen extends StatelessWidget {
                           icon: Icons.email,
                           label: 'Email',
                           validator: emailValidator,
+                          textInputType: TextInputType.emailAddress,
                         ),
                         //SENHA
                         CustomTextField(

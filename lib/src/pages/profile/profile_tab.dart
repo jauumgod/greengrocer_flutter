@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greengrocer/src/pages/auth/components/custom_text_field.dart';
-import 'package:greengrocer/src/pages/auth/view/sign_in_screen.dart';
-
+import 'package:greengrocer/src/pages/auth/controller/auth_controller.dart';
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
-  
 
   @override
   State<ProfileTab> createState() => _ProfileTabState();
 }
 
-
 class _ProfileTabState extends State<ProfileTab> {
+  final authController = Get.find<AuthController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,9 +21,7 @@ class _ProfileTabState extends State<ProfileTab> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (c) => SignScreen()),
-              );
+              authController.signOut();
             },
             icon: Icon(
               Icons.logout,
