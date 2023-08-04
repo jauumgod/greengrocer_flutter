@@ -1,15 +1,17 @@
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:add_to_cart_animation/add_to_cart_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
 import 'package:greengrocer/src/pages/common_widgets/custom_shimmer.dart';
 import 'package:greengrocer/src/pages/home/components/category_tile.dart';
 import 'package:greengrocer/src/config/appdata.dart' as appData;
 import 'package:greengrocer/src/pages/home/components/item_tile.dart';
+import 'package:greengrocer/src/pages/home/view/controller/home_controller.dart';
 //import 'package:greengrocer/src/pages/orders/orders_tab.dart';
 import 'package:greengrocer/src/services/utils_services.dart';
 
-import '../common_widgets/app_name_widget.dart';
+import '../../common_widgets/app_name_widget.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
@@ -32,6 +34,8 @@ class _HomeTabState extends State<HomeTab> {
   @override
   void initState() {
     super.initState();
+
+    Get.find<HomeController>().printExample();
 
     Future.delayed(
       const Duration(seconds: 3),
@@ -125,32 +129,38 @@ class _HomeTabState extends State<HomeTab> {
             Container(
               padding: const EdgeInsets.only(left: 18),
               height: 40,
-              child: !isLoading ? ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (_, index) {
-                  return CategoryTile(
-                    onPressed: () {
-                      setState(() {
-                        selectedCategory = appData.categories[index];
-                      });
-                    },
-                    category: appData.categories[index],
-                    isSelected: appData.categories[index] == selectedCategory,
-                  );
-                },
-                separatorBuilder: (_, index) => const SizedBox(width: 10),
-                itemCount: appData.categories.length,
-              ) : ListView(
-                scrollDirection: Axis.horizontal,
-                children: 
-                List.generate(5, (index) => Container(
-                    margin: const EdgeInsets.only(right: 12),
-                    alignment: Alignment.center,
-                    child: CustomShimmer(height: 20, width: 80, borderRadius: BorderRadius.circular(20),
+              child: !isLoading
+                  ? ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (_, index) {
+                        return CategoryTile(
+                          onPressed: () {
+                            setState(() {
+                              selectedCategory = appData.categories[index];
+                            });
+                          },
+                          category: appData.categories[index],
+                          isSelected:
+                              appData.categories[index] == selectedCategory,
+                        );
+                      },
+                      separatorBuilder: (_, index) => const SizedBox(width: 10),
+                      itemCount: appData.categories.length,
                     )
-                  ),
-                ),
-              ),
+                  : ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: List.generate(
+                        5,
+                        (index) => Container(
+                            margin: const EdgeInsets.only(right: 12),
+                            alignment: Alignment.center,
+                            child: CustomShimmer(
+                              height: 20,
+                              width: 80,
+                              borderRadius: BorderRadius.circular(20),
+                            )),
+                      ),
+                    ),
             ),
 
             //grid
