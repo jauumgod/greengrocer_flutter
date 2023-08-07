@@ -8,8 +8,11 @@ class CartTile extends StatefulWidget {
   final CartItemModel cartItem;
   final Function(CartItemModel) remove;
 
-  const CartTile({Key? key, required this.cartItem, required this.remove})
-      : super(key: key);
+  const CartTile({Key? key,
+  required this.cartItem,
+  required this.remove,
+
+  }) : super(key: key);
 
   @override
   State<CartTile> createState() => _CartTileState();
@@ -38,7 +41,8 @@ class _CartTileState extends State<CartTile> {
           ),
         ),
         //total
-        subtitle: Text(utilsServices.priceToCurrency(widget.cartItem.totalPrice()),
+        subtitle: Text(
+          utilsServices.priceToCurrency(widget.cartItem.totalPrice()),
           style: TextStyle(
             color: CustomColors.customSwatchColor,
             fontWeight: FontWeight.bold,

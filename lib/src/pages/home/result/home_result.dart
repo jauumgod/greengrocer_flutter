@@ -4,7 +4,7 @@ part 'home_result.freezed.dart';
 
 @freezed
 class HomeResult<T> with _$HomeResult {
-  factory HomeResult.success(List data) = Success;
+  factory HomeResult.success(List<T>data) = Success;
   factory HomeResult.error(String message) = Error;
 }
   

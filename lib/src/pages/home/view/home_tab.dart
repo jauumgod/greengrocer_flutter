@@ -7,7 +7,7 @@ import 'package:greengrocer/src/pages/common_widgets/custom_shimmer.dart';
 import 'package:greengrocer/src/pages/home/components/category_tile.dart';
 import 'package:greengrocer/src/config/appdata.dart' as appData;
 import 'package:greengrocer/src/pages/home/components/item_tile.dart';
-import 'package:greengrocer/src/pages/home/view/controller/home_controller.dart';
+import 'package:greengrocer/src/pages/home/controller/home_controller.dart';
 //import 'package:greengrocer/src/pages/orders/orders_tab.dart';
 import 'package:greengrocer/src/services/utils_services.dart';
 
@@ -35,7 +35,7 @@ class _HomeTabState extends State<HomeTab> {
   void initState() {
     super.initState();
 
-    Get.find<HomeController>().printExample();
+    Get.find<HomeController>();
 
     Future.delayed(
       const Duration(seconds: 3),

@@ -27,12 +27,14 @@ class _CartTabState extends State<CartTab> {
   }
 
   double cartTotalPrice() {
+
     double total = 0;
 
     for (var item in appData.cartItems) {
       total += item.totalPrice();
     }
     return total;
+
   }
 
   @override
@@ -106,8 +108,7 @@ class _CartTabState extends State<CartTab> {
                             return PaymentDialog(order: appData.orders.first);
                           });
                     } else {
-                      utilsServices.showToast(
-                          message: 'Pedido não confirmado');
+                      utilsServices.showToast(message: 'Pedido não confirmado');
                     }
                   },
                   child: const Text(

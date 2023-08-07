@@ -18,19 +18,19 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomeResult<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<dynamic> data) success,
+    required TResult Function(List<T> data) success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<dynamic> data)? success,
+    TResult? Function(List<T> data)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<dynamic> data)? success,
+    TResult Function(List<T> data)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -80,7 +80,7 @@ abstract class _$$SuccessCopyWith<T, $Res> {
           _$Success<T> value, $Res Function(_$Success<T>) then) =
       __$$SuccessCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({List<dynamic> data});
+  $Res call({List<T> data});
 }
 
 /// @nodoc
@@ -100,7 +100,7 @@ class __$$SuccessCopyWithImpl<T, $Res>
       null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<T>,
     ));
   }
 }
@@ -108,11 +108,11 @@ class __$$SuccessCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$Success<T> implements Success<T> {
-  _$Success(final List<dynamic> data) : _data = data;
+  _$Success(final List<T> data) : _data = data;
 
-  final List<dynamic> _data;
+  final List<T> _data;
   @override
-  List<dynamic> get data {
+  List<T> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
@@ -144,7 +144,7 @@ class _$Success<T> implements Success<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<dynamic> data) success,
+    required TResult Function(List<T> data) success,
     required TResult Function(String message) error,
   }) {
     return success(data);
@@ -153,7 +153,7 @@ class _$Success<T> implements Success<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<dynamic> data)? success,
+    TResult? Function(List<T> data)? success,
     TResult? Function(String message)? error,
   }) {
     return success?.call(data);
@@ -162,7 +162,7 @@ class _$Success<T> implements Success<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<dynamic> data)? success,
+    TResult Function(List<T> data)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -205,9 +205,9 @@ class _$Success<T> implements Success<T> {
 }
 
 abstract class Success<T> implements HomeResult<T> {
-  factory Success(final List<dynamic> data) = _$Success<T>;
+  factory Success(final List<T> data) = _$Success<T>;
 
-  List<dynamic> get data;
+  List<T> get data;
   @JsonKey(ignore: true)
   _$$SuccessCopyWith<T, _$Success<T>> get copyWith =>
       throw _privateConstructorUsedError;
@@ -275,7 +275,7 @@ class _$Error<T> implements Error<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<dynamic> data) success,
+    required TResult Function(List<T> data) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -284,7 +284,7 @@ class _$Error<T> implements Error<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<dynamic> data)? success,
+    TResult? Function(List<T> data)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -293,7 +293,7 @@ class _$Error<T> implements Error<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<dynamic> data)? success,
+    TResult Function(List<T> data)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
